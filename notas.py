@@ -13,4 +13,12 @@ while nro_vueltas < 5:
     except Exception as e:
         print(e.__class__.__name__)
         print(f'Ocurrio un problema : {str(e)}')
-print(lista)
+def sumalista(lista):
+    nota=0
+    promedio=0
+    laSuma = 0
+    for i in lista:
+        laSuma = laSuma + i
+    return laSuma
+print(sumalista(lista)/5)
+promedio=sumalista(lista)/5
