@@ -20,5 +20,29 @@ def sumalista(lista):
     for i in lista:
         laSuma = laSuma + i
     return laSuma
-print(sumalista(lista)/5)
+
 promedio=sumalista(lista)/5
+
+ 
+#Vamos a poner los números en una lista
+#numeros = []
+
+# Asumir que el mayor es el primero de la lista
+mayor = lista[0]
+menor = lista[0]
+
+# Recorrer y comparar
+for numero in lista:
+    if numero > mayor:
+        mayor = numero
+    else:
+        if numero < menor:
+            menor = numero  
+
+#Promedio de notas
+print("El promedio es:", promedio)
+# Imprimir el resultado
+print("Mayor:", mayor)
+
+# Imprimir el resultado
+print("Menor:", menor)
