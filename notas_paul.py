@@ -20,7 +20,7 @@ def set_alumnos():
         except KeyboardInterrupt:
             print('\n')
             print("Proceso terminado.")
-            sys.exit()
+            exit
         except Exception as e:
             print(e.__class__.__name__)
             print(f'Ocurrio un problema : {str(e)}')
@@ -32,13 +32,22 @@ def set_alumnos():
 def set_registro_alumno():
     print("--------------------------------------------------------------------------------")
     print("Registro del Alumno") 
-    nombre_alumno = set_nombre_alumno()
-    numero_notas = set_numero_notas()
-    lista_notas = set_notas(numero_notas)
-    alumno = dict(nombre_alumno = nombre_alumno, numero_notas = numero_notas, lista_notas = lista_notas)
-    print("--------------------------------------------------------------------------------")
-    print(f'Alumno en diccionario : {alumno}')
-    return alumno
+    try:
+        nombre_alumno = set_nombre_alumno()
+        numero_notas = set_numero_notas()
+        lista_notas = set_notas(numero_notas)
+        alumno = dict(nombre_alumno = nombre_alumno, numero_notas = numero_notas, lista_notas = lista_notas)
+        print("--------------------------------------------------------------------------------")
+        print(f'Alumno en diccionario : {alumno}')
+        return alumno
+    except KeyboardInterrupt:
+        print('\n')
+        print("Proceso terminado.")
+        exit
+    except Exception as e:
+        print(e.__class__.__name__)
+        print(f'Ocurrio un problema : {str(e)}')
+    
 
 
 def set_nombre_alumno():
@@ -47,11 +56,13 @@ def set_nombre_alumno():
     try:
         nombre = input(f"Ingrese el Nombre del Alumno: ")
         print("El nombre Ingresado fue " + nombre)
+        if not nombre.strip():
+            set_nombre_alumno()
         return nombre
     except KeyboardInterrupt:
         print('\n')
         print("Proceso terminado.")
-        sys.exit()
+        exit
     except Exception as e:
         print(e.__class__.__name__)
         print(f'Ocurrio un problema : {str(e)}')
@@ -68,7 +79,7 @@ def set_numero_notas():
     except KeyboardInterrupt:
         print('\n')
         print("Proceso terminado.")
-        sys.exit()
+        exit
     except ValueError:
         print("Ingrese un valor correcto.")
         return set_numero_notas()
@@ -85,14 +96,18 @@ def set_notas(nro_notas):
         nro_vueltas += 1
         try:
             nota = int(input(f"Ingrese nota {nro_vueltas} :"))
-            lista.append(nota)
+            if( (0 <= nota) and (nota <= 20)):
+                lista.append(nota)
+            else:
+                print(f'Ocurrio un problema, la nota ingresada debe de estar en el rango de  0 y 20')
+                nro_vueltas -= 1
         except ValueError as e:
             print(f'Ocurrio un problema, solo debes ingresar números')
             nro_vueltas -= 1
         except KeyboardInterrupt:
             print('\n')
             print("Proceso terminado.")
-            sys.exit()
+            exit
         except Exception as e:
             print(e.__class__.__name__)
             print(f'Ocurrio un problema : {str(e)}')
